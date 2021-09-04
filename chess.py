@@ -43,19 +43,40 @@ def checkTwoLength(data):
 
 
 
-moves = ['e4','e5','Qf3','Nc6','Bck4','o8']
-
+moves = ['h4','e5+','f3','Cd0','Bck4','O-O','o8']
 
 flag = False
 
 for i in moves:
+    
     if len(i) >= 2 and len(i) <= 4:
+
+        # lenght two validation 
         if len(i) == 2:
             if checkTwoLength(i) != True:
-                flag = True       
+                flag = True  
+
+        # lenght three validation 
+        if len(i) == 3:
+            if checkTwoLength(i[0:2]) and i[-1] in ['+','#']:
+                pass
+            elif ord(i[0]) in range(65,91) and checkTwoLength(i[1:]):
+                pass
+            elif i == "O-O":
+                pass
+            else:
+                flag = True 
+
+        # lenght four validation
+        if len(i) == 4:
+            pass
+        
     else:
         flag = True
 
+
+
+    
 if flag:
     print("Invalid")
 else:
