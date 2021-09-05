@@ -51,6 +51,7 @@ def chessValidation(data):
             if len(i) == 2:
                 if checkTwoLength(i) != True:
                     flag = True  
+                    break
 
             # -----------------lenght three validation---------------------
             if len(i) == 3:
@@ -68,6 +69,7 @@ def chessValidation(data):
 
                 else:
                     flag = True 
+                    break
 
             # ----------------lenght four validation-------------------
             if len(i) == 4:
@@ -84,12 +86,14 @@ def chessValidation(data):
                     pass
                 else:
                     flag = True
+                    break
         else:
             flag = True
+            break
 
 
 
-    # final  result 
+    # validation for checkmate
     if len(checkMate) == 1:
         if checkMate[0] == data[-1]:
             pass
@@ -99,22 +103,26 @@ def chessValidation(data):
         flag = True
 
 
+    # final output
     if flag:
-        return False
+        return "Invalid"
     else:
-        return True
+        return "Valid"
         
 # -----------------end custom functons------------------- 
 
 
 
-# moves = ['h4','e5+','f3','Cd7','Bc4+','N347','O-O','Bc4#','o8']
-moves2= ['e4', 'e5', 'Qf3', 'Nc6', 'Bc4', 'a6', 'Bc4#']
+moves = input("Please enter your moves and each moves must be separated by comma/space: ").strip()
 
 
-
-
-if chessValidation(moves2):
-    print("Valid")
+if ',' in moves:
+    filter = moves.split(',')
+    filterMoves = []
+    for i in filter:
+        filterMoves.append(i.strip())
 else:
-    print("Invalid")
+    filterMoves = moves.split()
+    
+
+print(chessValidation(filterMoves).center(50,"="))
